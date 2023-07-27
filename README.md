@@ -2,4 +2,4 @@
 
 ### checking
 
-### checking changes with ansible config artifacts
+### checking changes with ansible config artifact
