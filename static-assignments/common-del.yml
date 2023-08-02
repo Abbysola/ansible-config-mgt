@@ -1,6 +1,10 @@
 ---
 - name: update web, nfs and db servers
+<<<<<<< HEAD
+  hosts: webservers, nfs, db
+=======
   hosts: webservers, nfs
+>>>>>>> 449cf366275bbf80daf8d29320df3a409b094b54
   remote_user: ec2-user
   become: yes
   become_user: root
@@ -11,7 +15,11 @@
       state: removed
 
 - name: update LB server
+<<<<<<< HEAD
+  hosts: lb
+=======
   hosts: lb, db
+>>>>>>> 449cf366275bbf80daf8d29320df3a409b094b54
   remote_user: ubuntu
   become: yes
   become_user: root
