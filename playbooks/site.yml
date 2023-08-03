@@ -11,3 +11,7 @@
 - hosts: webservers
 - name: Webserver assignment
   import_playbook: ../static-assignments/webservers.yml
+<<<<<<< HEAD
+=======
+
+>>>>>>> bfe480748e58dcf723abc3c09a2e93372455f71c
