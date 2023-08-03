@@ -1,8 +1,24 @@
 ---
- - name: Loadbalancers assignment
-       hosts: lb
-        - import_playbook: ../static-assignments/loadbalancers.yml
-          when: load_balancer_is_required
+- name: Import common file
+  hosts: all
+  import_playbook: ../static-assignments/common.yml 
+  tags:
+    - always
+
+- name: Include end-vars file
+  hosts: all
+  include: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
+- name: Webserver assignment
+  hosts: webservers
+  import_playbook: ../static-assignments/uat-webservers.yml
+
+- name: Loadbalancers assignment
+  hosts: lb
+  import_playbook: ../static-assignments/loadbalancers.yml
+  when: load_balancer_is_required
 
 
 
