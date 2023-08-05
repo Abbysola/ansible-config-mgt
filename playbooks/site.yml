@@ -1,20 +1,29 @@
 ---
-- name: Import common file
-  import_playbook: ../static-assignments/common.yml 
-  tags:
-    - always
+- hosts: db
+- name: database assignment
+  ansible.builtin.import_playbook: ../static-assignments/database.yml
 
-- name: Include end-vars file
-  import_playbook: ../dynamic-assignments/env-vars.yml
-  tags:
-    - always
+- hosts: lb
+- name: database assignment
+  ansible.builtin.import_playbook: ../static-assignments/database.yml
 
-- name: Webserver assignment
-  import_playbook: ../static-assignments/uat-webservers.yml
 
-- name: Loadbalancers assignment
-  import_playbook: ../static-assignments/loadbalancers.yml
-  when: load_balancer_is_required
+#- name: Import common file
+#  import_playbook: ../static-assignments/common.yml 
+#  tags:
+#    - always
+
+#- name: Include end-vars file
+# import_playbook: ../dynamic-assignments/env-vars.yml
+#  tags:
+#    - always
+
+#- name: Webserver assignment
+#  import_playbook: ../static-assignments/uat-webservers.yml
+
+#- name: Loadbalancers assignment
+# import_playbook: ../static-assignments/loadbalancers.yml
+#  when: load_balancer_is_required
 
 
 
