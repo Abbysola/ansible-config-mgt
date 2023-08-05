@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ANSIBLE_CONFIG="$(WORKSPACE)/deploy/ansible.cfg"
+        ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
     }
 
     stages {
@@ -29,13 +29,15 @@ pipeline {
 
     stage('Run Ansible Playbook') {
       steps {
-         ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev.yml', playbook: 'playbooks/site.yml'
+         ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, 
+         installation: 'ansible', inventory: 'inventory/dev.yml', playbook: 'playbooks/site.yml'
       } 
     }  
 
     stage('Clean Workspace after build') {
       steps { 
-          cleanWs(cleanwhenAborted: true, cleanwhenFailure: true, cleanwhennotBuilt: true, cleanwhenUnstable: true, deleteDirs: true)
+          cleanWs(cleanwhenAborted: true, cleanwhenFailure: true, cleanwhennotBuilt: true, cleanwhenUnstable: true, 
+          deleteDirs: true)
     
       }
 
