@@ -2,12 +2,13 @@
 - name: database assignment for db hosts
   hosts: db
   tasks:
-    - import_playbook: ../static-assignments/database.yml
+    - include_playbook: ../static-assignments/database.yml
 
 - name: database assignment for lb hosts
   hosts: lb
   tasks:
-    - import_playbook: ../static-assignments/database.yml
+    - include_playbook: ../static-assignments/database.yml
+
 
 #---
 #- hosts: db
