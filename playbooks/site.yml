@@ -1,11 +1,22 @@
 ---
-- hosts: db
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/database.yml
+- name: database assignment for db hosts
+  hosts: db
+  tasks:
+    - import_playbook: ../static-assignments/database.yml
 
-- hosts: lb
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/database.yml
+- name: database assignment for lb hosts
+  hosts: lb
+  tasks:
+    - import_playbook: ../static-assignments/database.yml
+
+#---
+#- hosts: db
+#- name: database assignment
+#  ansible.builtin.import_playbook: ../static-assignments/database.yml
+
+#- hosts: lb
+#- name: database assignment
+#  ansible.builtin.import_playbook: ../static-assignments/database.yml
 
 
 #- name: Import common file
