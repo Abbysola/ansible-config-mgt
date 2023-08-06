@@ -7,7 +7,7 @@
 - hosts: lb
   name: load balancer assignment
   tasks:
-    - import_playbook: ../static-assignments/loadbalancer.yml
+    - import_playbook: ../static-assignments/loadbalancers.yml
 
 #---
 #- hosts: db
