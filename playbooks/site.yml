@@ -2,12 +2,14 @@
 - hosts: db
   name: database assignment
   tasks:
-    - import_playbook: ../static-assignments/common.yml
+    - name: Include Database Playbook
+      import_playbook: ../static-assignments/common.yml
 
 - hosts: lb
   name: load balancer assignment
   tasks:
-    - import_playbook: ../static-assignments/loadbalancers.yml
+    - name: Include Load Balancer Playbook
+      import_playbook: ../static-assignments/loadbalancers.yml
 
 #---
 #- hosts: db

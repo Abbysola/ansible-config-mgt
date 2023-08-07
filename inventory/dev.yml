@@ -8,5 +8,5 @@
 [db]
 172.31.81.97 ansible_ssh_user='ubuntu' 
 
-#[lb]
-#172.31.89.55 ansible_ssh_user='ubuntu'
+[lb]
+172.31.89.55 ansible_ssh_user='ubuntu'
