@@ -1,4 +1,9 @@
+#---
+#- hosts: uat-webservers
+ # roles:
+ #    - webserver
+
 ---
-- hosts: uat-webservers
+- hosts: db
   roles:
-     - webserver
+    - mysql

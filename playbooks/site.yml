@@ -14,11 +14,11 @@
 ---
 - hosts: db
 - name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/common.yml
+  ansible.builtin.import_playbook: ../static-assignments/uat-webservers.yml
 
-- hosts: lb
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/loadbalancers.yml
+#- hosts: lb
+#- name: database assignment
+ # ansible.builtin.import_playbook: ../static-assignments/loadbalancers.yml
 
 
 #- name: Import common file
