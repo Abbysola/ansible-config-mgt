@@ -1,24 +1,24 @@
----
-- hosts: db
-  name: database assignment
-  tasks:
-    - name: Include Database Playbook
-      import_playbook: ../static-assignments/common.yml
-
-- hosts: lb
-  name: load balancer assignment
-  tasks:
-    - name: Include Load Balancer Playbook
-      import_playbook: ../static-assignments/loadbalancers.yml
-
 #---
 #- hosts: db
-#- name: database assignment
-#  ansible.builtin.import_playbook: ../static-assignments/database.yml
+#  name: database assignment
+#  tasks:
+#    - name: Include Database Playbook
+#      import_playbook: ../static-assignments/common.yml
 
 #- hosts: lb
-#- name: database assignment
-#  ansible.builtin.import_playbook: ../static-assignments/database.yml
+#  name: load balancer assignment
+#  tasks:
+#    - name: Include Load Balancer Playbook
+#      import_playbook: ../static-assignments/loadbalancers.yml
+
+---
+- hosts: db
+- name: database assignment
+  ansible.builtin.import_playbook: ../static-assignments/common.yml
+
+- hosts: lb
+- name: database assignment
+  ansible.builtin.import_playbook: ../static-assignments/loadbalancers.yml
 
 
 #- name: Import common file
