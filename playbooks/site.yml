@@ -13,6 +13,7 @@
 
 ---
 - hosts: db
+  become: yes
 - name: database assignment
   ansible.builtin.import_playbook: ../static-assignments/uat-webservers.yml
 
