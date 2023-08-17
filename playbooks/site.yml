@@ -1,4 +1,4 @@
-#---
+---
 #- hosts: db
 #  name: database assignment
 #  tasks:
