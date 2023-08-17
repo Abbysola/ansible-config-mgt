@@ -11,11 +11,15 @@
 #    - name: Include Load Balancer Playbook
 #      import_playbook: ../static-assignments/loadbalancers.yml
 
----
-- hosts: db
-  become: yes
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/uat-webservers.yml
+#---
+#- hosts: db
+#  become: yes
+#- name: database assignment
+#  ansible.builtin.import_playbook: ../static-assignments/uat-webservers.yml
+
+- hosts: artifactory
+- name: artifactory assignment
+  ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
 
 #- hosts: lb
 #- name: database assignment

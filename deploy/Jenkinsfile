@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     environment {
-        ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+      ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
     }
+
 
     parameters {
-      string(name: 'inventory', defaultValue: 'inventory/dev.yml',  description: 'This is the inventory file for the environment to deploy configuration')
+      string(name: 'inventory', defaultValue: 'dev.yml',  description: 'This is the inventory file for the environment to deploy configuration')
     }
-
-    stages {
-    stage("Initial cleanup") {
-      steps {
-        dir("${WORKSPACE}") {
-          deleteDir()
+    
+    stages{
+      stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
         }
-      }
-    }
 
     stage('Checkout SCM') {
       steps {
@@ -42,8 +43,18 @@ pipeline {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
     
       }
-
-
     }
-  }
-}    
+  } 
+}   
+
+//  stage('Prepare Dependencies') {
+//    steps {
+//            sh 'sudo mv /home/ubuntu/php-todo/.env.sample /home/ubuntu/php-todo/.env' 
+//            sh 'composer install'
+//             sh 'php artisan migrate'
+//             sh 'php artisan db:seed'           sh 'php artisan key:generate'
+//      }
+//    }
+//  }
+//}
+      
