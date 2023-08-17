@@ -11,7 +11,7 @@
   hosts: nginx
   tasks:
     - name: Include nginx playbook
-      ansible.builtin.import_playbook: ../static-assignments/nginx.yml
+      include_playbook: ../static-assignments/nginx.yml
 
 # - hosts: artifactory
 # - name: artifactory assignment
