@@ -1,16 +1,15 @@
 pipeline {
-    agent any
+  agent any
 
-    environment {
+  environment {
       ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
     }
 
-
-    parameters {
+  parameters {
       string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
     }
-    
-    stages{
+
+  stages{
       stage("Initial cleanup") {
           steps {
             dir("${WORKSPACE}") {
@@ -19,42 +18,31 @@ pipeline {
           }
         }
 
-    stage('Checkout SCM') {
-      steps {
-        git branch: 'features/jenkinspipeline-stages2', url: 'https://github.com/Abbysola/ansible-config-mgt.git'
+      stage('Checkout SCM') {
+         steps{
+            git branch: 'main', url: 'https://github.com/Livingstone95/ansible-config.git'
+         }
+       }
+
+      stage('Prepare Ansible For Execution') {
+        steps {
+          sh 'echo ${WORKSPACE}' 
+          sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
+        }
+     }
+
+      stage('Run Ansible playbook') {
+        steps {
+           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
+         }
       }
-    }
 
-    stage('Prepare Ansible for Execution') {
-      steps {
-         sh 'echo ${WORKSPACE}'
-         sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
-      }
-    }
-
-    stage('Run Ansible Playbook') {
-      steps {
-         ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
-      } 
-    }  
-
-    stage('Clean Workspace after build') {
-      steps { 
+      stage('Clean Workspace after build'){
+        steps{
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-    
+        }
       }
-    }
-  } 
-}   
+   }
 
-//  stage('Prepare Dependencies') {
-//    steps {
-//            sh 'sudo mv /home/ubuntu/php-todo/.env.sample /home/ubuntu/php-todo/.env' 
-//            sh 'composer install'
-//             sh 'php artisan migrate'
-//             sh 'php artisan db:seed'           sh 'php artisan key:generate'
-//      }
-//    }
-//  }
-//}
-      
+}
+

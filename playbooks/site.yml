@@ -1,55 +1,20 @@
 ---
-#- hosts: db
-#  name: database assignment
-#  tasks:
-#    - name: Include Database Playbook
-#      import_playbook: ../static-assignments/common.yml
+# - hosts: db
+# - name: database assignment
+#   ansible.builtin.import_playbook: ../static-assignments/database.yml
 
-#- hosts: lb
-#  name: load balancer assignment
-#  tasks:
-#    - name: Include Load Balancer Playbook
-#      import_playbook: ../static-assignments/loadbalancers.yml
+# - hosts: nginx
+# - name: nginx assignment
+#   ansible.builtin.import_playbook: ../static-assignments/nginx.yml
 
-#---
-#- hosts: db
-#  become: yes
-#- name: database assignment
-#  ansible.builtin.import_playbook: ../static-assignments/uat-webservers.yml
+# - hosts: artifactory
+# - name: artifactory assignment
+#   ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
 
-#- hosts: artifactory
-#- name: artifactory assignment
-#  ansible.builtin.import_playbook: ../static-assignments/artifactory.yml
+- hosts: sonar
+- name: sonar assignment
+  ansible.builtin.import_playbook: ../static-assignments/sonar.yml
 
-#- hosts: lb
-#- name: database assignment
-#  ansible.builtin.import_playbook: ../static-assignments/loadbalancers.yml
-
-- hosts: lb
-  tasks:
-    - name: database assignment
-      import_playbook: ../static-assignments/loadbalancers.yml
-
-
-#- name: Import common file
-#  import_playbook: ../static-assignments/common.yml 
-#  tags:
-#    - always
-
-#- name: Include end-vars file
-# import_playbook: ../dynamic-assignments/env-vars.yml
-#  tags:
-#    - always
-
-#- name: Webserver assignment
-#  import_playbook: ../static-assignments/uat-webservers.yml
-
-#- name: Loadbalancers assignment
-# import_playbook: ../static-assignments/loadbalancers.yml
-#  when: load_balancer_is_required
-
-
-
-
-
-
+# - hosts: todo
+# - name: Deploy the todo application
+#   ansible.builtin.import_playbook: ../static-assignments/deployment.yml
