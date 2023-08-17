@@ -1,5 +1,2 @@
 [nginx]
-172.31.89.55 ansible_ssh_user=''
-
-[db]
-172.31.27.62 ansible_ssh_user
+172.31.89.55
