@@ -7,10 +7,10 @@
 #- name: nginx assignment
 #  ansible.builtin.import_playbook: ../static-assignments/nginx.yml
 
--  name: nginx assignment
+- name: nginx assignment
   hosts: nginx
   tasks:
-    -  name: Include nginx playbook
+    - name: Include nginx playbook
       include_playbook: ../static-assignments/nginx.yml
 
 # - hosts: artifactory
